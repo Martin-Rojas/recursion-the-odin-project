@@ -12,4 +12,11 @@ function power(exponent, base) {
   } else return base * power(exponent - 1, base);
 }
 
-console.log(power(4, 2));
+//console.log(power(4, 2));
+
+function factorial(n) {
+  if (n == 1) return 1;
+  else return n * factorial(n - 1);
+}
+
+console.log(factorial(5));
