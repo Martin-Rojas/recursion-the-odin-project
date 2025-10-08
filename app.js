@@ -69,5 +69,23 @@ const contains = (nestedObject, searchValue) => {
 let hasIt = contains(nestedObject, 44);
 let doesntHaveIt = contains(nestedObject, "foo");
 
-console.log(hasIt);
-console.log(doesntHaveIt);
+// console.log(hasIt);
+// console.log(doesntHaveIt);
+
+const totalIntegers = (mulArr) => {
+  //case base
+  if (mulArr.length === 0) return 0;
+
+  let total = 0;
+  let firstElement = mulArr.shift();
+
+  if (Array.isArray(firstElement)) {
+    total += totalIntegers(firstElement); // It will count all integer of nested array
+  } else if (Number.isInteger(firstElement)) {
+    total += 1;
+  }
+
+  return total + totalIntegers(mulArr);
+};
+const seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6, 8]]]); // 7
+console.log(seven);
