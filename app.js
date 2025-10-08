@@ -88,4 +88,31 @@ const totalIntegers = (mulArr) => {
   return total + totalIntegers(mulArr);
 };
 const seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6, 8]]]); // 7
-console.log(seven);
+///console.log(seven);
+
+const SumSquares = (list) => {
+  if (list.length === 0) return 0;
+
+  let total = 0;
+  let firstItemList = list.shift();
+
+  if (Array.isArray(firstItemList)) {
+    total += SumSquares(firstItemList);
+  } else if (Number.isInteger(firstItemList)) {
+    total += firstItemList * firstItemList;
+  }
+
+  return total + SumSquares(list);
+};
+
+var l = [1, 2, 3];
+console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[1, 2], 3];
+console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[[[[[[[[1]]]]]]]]];
+console.log(SumSquares(l)); // 1 = 1
+
+l = [10, [[10], 10], [10]];
+console.log(SumSquares(l)); // 100 + 100 + 100 + 100 = 400
