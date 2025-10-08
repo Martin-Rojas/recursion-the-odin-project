@@ -23,7 +23,7 @@ function factorial(n) {
 
 function all(array, callbackFunction) {
   let copy = [...array];
-  console.log(copy + ` length ${copy.length}`);
+  //console.log(copy + ` length ${copy.length}`);
 
   if (copy.length == 0) return true;
 
@@ -32,8 +32,42 @@ function all(array, callbackFunction) {
     return all(copy, callbackFunction);
   } else return false;
 }
-const allAreLessThanSeven = all([1, 2, 4, 3, 5,19], function (num) {
+const allAreLessThanSeven = all([1, 2, 4, 3, 5, 19], function (num) {
   return num < 7;
 });
 
-console.log(allAreLessThanSeven);
+//console.log(allAreLessThanSeven);
+
+var nestedObject = {
+  data: {
+    info: {
+      stuff: {
+        thing: {
+          moreStuff: {
+            magicNumber: 44,
+            something: "foo2",
+          },
+        },
+      },
+    },
+  },
+};
+
+const contains = (nestedObject, searchValue) => {
+  if (typeof nestedObject !== "object" || nestedObject === null) {
+    return nestedObject === searchValue;
+  }
+  /* Object.values return an array of the values of nested objects*/
+  for (const value of Object.values(nestedObject)) {
+    if (contains(value, searchValue)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+let hasIt = contains(nestedObject, 44);
+let doesntHaveIt = contains(nestedObject, "foo");
+
+console.log(hasIt);
+console.log(doesntHaveIt);
