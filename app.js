@@ -105,14 +105,27 @@ const SumSquares = (list) => {
   return total + SumSquares(list);
 };
 
-var l = [1, 2, 3];
-console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+// var l = [1, 2, 3];
+// console.log(SumSquares(l)); // 1 + 4 + 9 = 14
 
-l = [[1, 2], 3];
-console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+// l = [[1, 2], 3];
+// console.log(SumSquares(l)); // 1 + 4 + 9 = 14
 
-l = [[[[[[[[[1]]]]]]]]];
-console.log(SumSquares(l)); // 1 = 1
+// l = [[[[[[[[[1]]]]]]]]];
+// console.log(SumSquares(l)); // 1 = 1
 
-l = [10, [[10], 10], [10]];
-console.log(SumSquares(l)); // 100 + 100 + 100 + 100 = 400
+// l = [10, [[10], 10], [10]];
+// console.log(SumSquares(l)); // 100 + 100 + 100 + 100 = 400
+
+const replicate = (times, num) => {
+  if (times < 0) return [];
+
+  if (times >= 1) {
+    return [num, ...replicate(times - 1, num)];
+  }
+  return replicate(times - 1, num);
+};
+
+console.log(replicate(3, 5)); // [5, 5, 5]
+console.log(replicate(1, 69)); // [69]
+console.log(replicate(-2, 6)); // []
